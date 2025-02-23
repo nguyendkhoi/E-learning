@@ -113,16 +113,25 @@ The frontend of the application, where we have many templates, each of which dis
 
 *   **`README.md`**: This file, the one you are currently writing, serves as the project's documentation. It provides an overview of the project, instructions for setup and running, file descriptions, and other relevant information.
 
-## How to run it
+## How to Run the Application
 
-    ```bash
-    git clone https://github.com/nguyendkhoi/E-learning.git
-    python -m venv env
-    source env/bin/activate   # On Linux/macOS
-    env\Scripts\activate  # On Windows
-    pip install -r requirements.txt
-    cd e_learning
-    python manage.py migrate
-    python manage.py runserver
-    ```
-    Open your web browser and go to the address shown in your terminal (usually `http://127.0.0.1:8000/`). You should see the homepage of your e-learning platform.
+To run this Django e-learning platform, please follow these steps:
+
+```bash
+git clone [https://github.com/nguyendkhoi/E-learning.git](https://github.com/nguyendkhoi/E-learning.git)
+cd E-learning  # Navigate into the project directory (adjust if your folder name is different)
+
+# Create and activate a virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate   # On Linux/macOS
+venv\Scripts\activate  # On Windows
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Apply database migrations
+python manage.py migrate
+
+# Start the Django development server
+cd e_learning # Navigate to the inner project directory where manage.py is located
+python manage.py runserver
