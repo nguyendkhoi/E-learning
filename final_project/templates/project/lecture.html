@@ -1,0 +1,70 @@
+{% extends "project/layout.html" %}
+{% load static %}
+{% block body %}
+    <div class="container position-relative">
+        <h3 class="fs-2 mt-3">{{ lecture.title }}</h3>
+        <hr style="margin-top: 10px; margin-bottom: 10px;">
+        <div>
+            <pre>{{ lecture.content|safe }}</pre>
+        </div>
+        {% if is_owner %}
+        <h3>Quiz:</h3>
+        <button id="add_quiz" class="btn btn-primary">Add quiz</button>
+        <form class="formControl" id="add_quiz_form" method="POST" action="{% url 'quizes:create_quiz' lecture_id=lecture.id %}">
+            {% csrf_token %}
+            <div class="mb-3" >
+                <label class="form-label" for="name">Name</label>
+                <input placeholder="Add name's quiz here" id="name" name="name" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="number_of_question">Number of questions</label>
+                <input type="number" placeholder="How many questions you want to add" id="number_of_question" name="number_of_question" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="difficulty">Select difficulty</label>
+                <select class="form-select" aria-label="Select difficulty" name="difficulty" id="difficulty">
+                    <option selected>Select difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                  </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="percentage">Required percentage to pass</label>
+                <div class="input-group">
+                <input type="number" placeholder="What is the passing percentage for this test?" id="percentage" name="percentage" class="form-control" required>
+                <div class="input-group-append">
+                    <span class="input-group-text">&#37;</span>
+                </div>
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Add new quiz">
+            <button id="cancel_quiz" class="btn btn-danger">Cancel</button>
+        </form>
+        {% endif %}
+        <div id="quiz_form_container" class="container"></div>
+        <div id="quiz_container">
+            <h2>Quizzes for this Lecture</h2>
+            {% if quizes %}
+                <ul style="list-style: none;">
+                {% for quiz in quizes %}
+                <li>
+                    <a href="{% url 'quizes:quiz_view' lecture.id quiz.quiz.id %}" class="quiz-link">
+                        <div class="quize">
+                            {% if quiz.passed %}
+                            <img src="{% static '/project/images/check-3278.svg' %}" alt="Correct Icon" width="20" height="20" style="vertical-align: middle; margin: 10px">
+                            {% else %}
+                            <img src="{% static '/project/images/task-svgrepo-com.svg' %}" alt="Quiz Icon" width="20" height="20" style="vertical-align: middle; margin: 10px">
+                            {% endif %}                            
+                            {{ quiz.quiz.name }}
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No quizzes found for this lecture.</p>
+            {% endif %}
+        </div>
+    </div> 
+{% endblock %}

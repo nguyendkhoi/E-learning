@@ -1,0 +1,27 @@
+{% extends "project/layout.html" %} 
+{% block body %}
+    <div class="container">
+        {% if user.role == "teacher" %}
+        <h2>Teacher</h2>
+        <h2>{{ user.full_name }}</h2>
+        <div>
+            <p>Total students</p>
+            <p>{{ nb_students }}</p>
+        </div>
+        <p>Contact:</p>
+        <a href="mailto:{{ user.email }}?subject=Inquiry" class="btn btn-primary">Send Email</a>
+        {% else %}
+        <h2>Student</h2>
+        <h2>{{ user.full_name }}</h2>
+        <p>Contact:</p>
+        <a href="mailto:{{ user.email }}?subject=Inquiry" class="btn btn-primary">Send Email</a>
+            {% if teacher_of_student %}
+            <div>
+                <h1>Course and tests: </h1>
+                <div id="course_and_test" data-student-id="{{ user.id }}">
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %} 

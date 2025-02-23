@@ -1,0 +1,30 @@
+{% extends "project/layout.html" %} 
+{% block body %}
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4 py-5">
+            {% if message %}
+            <h2>{{ message }}</h2>
+            {% endif %}
+            {% for course in courses %}
+            <div class="col px-3">
+                <div class="card shadow-sm p-2">
+                    <h3 class="fs-2"> Course: <br>{{ course.title }}</h3>
+                    <p>Description: <br>{{ course.description }}</p>
+                    <p>Category: {{ course.category }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">
+                            {% if request.user.is_teacher %}
+                            <a href="{% url 'course_detail' course.id %}">View</a>
+                            {% else %}
+                            <a href="{% url 'enroll_course' course.id %}">Enroll</a>
+                            {% endif %}
+                          </button>
+                        </div>
+                      </div>
+                </div>    
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{%endblock %} 

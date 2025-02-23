@@ -1,0 +1,4 @@
+Django
+django-select2
+Pillow
+django-embed-video

@@ -1,0 +1,62 @@
+{% extends "project/layout.html" %}
+{% block sidebar %}
+    {% for lecture in course.lectures.all %}
+    <li>
+        <a href="{% url 'lecture_views' lecture.id %} " class="nav-link link-body-emphasis">
+            {{ lecture.title }}
+        </a>
+    </li>
+    {% endfor %}
+{% endblock %}
+{% block body %}
+    <div class="container position-relative">
+        <h3 class="fs-2">{{ course.title }}</h3>
+        <span>Category: {{ course.category }}</span>
+        {% if is_owner %}
+        <form action="{% url 'remove_course_view' course.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger position-absolute top-0 end-0">Remove Course</button>
+        </form>        
+        {% endif %}
+        <hr style="margin-top: 10px; margin-bottom: 10px;">
+        {% if is_owner %}
+        <button id="add_lecture" class="btn btn-primary">Add new lecture</button>
+        <form class="formControl" method="POST" action="{% url 'addlecture' course.id %}" id="form_add_lecture" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3" >
+                <label class="form-label" for="title">Title</label>
+                <input placeholder="Add title here" id="title" name="title" type="text" class="form-control" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea placeholder="Add description here" id="description" name="description" class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="content">Content</label>
+                <textarea placeholder="Add content here" id="content" name="content" class="form-control" rows="7" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="video">Add video</label>
+                <input type="file" class="form-control" accept="video/*" name="video_file">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Add new lecture">
+            <button id="cancel_btn" class="btn btn-danger">Cancel</button>
+        </form>
+        {% endif %}
+        {% if not course.lectures.all %}
+            <p>You don't have any lecture</p>
+        {% endif %}
+        {% for lecture in course.lectures.all %}
+            <a href="{% url 'lecture_views' lecture.id %} " class="list-group-item list-group-item-action pb-3">
+                <h3>{{ lecture.title }}</h3>
+                <p>{{ lecture.description }}</p>
+                {% if is_owner %}
+                    <form action="{% url 'remove_lecture' lecture.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-danger position-absolute top-0 end-0">Remove lecture</button>
+                    </form>      
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

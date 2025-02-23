@@ -1,0 +1,15 @@
+{% extends "project/layout.html" %} 
+{% block body %}
+    <div class="container">
+        {% for course in courses %}
+            <div>
+                <h3>{{course.course.title}}</h3>
+                <ul>
+                    {% for people in course.peoples %}
+                        <li><a href="{% url 'profile' user_id=people.id %}">{{people.fullname}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %} 

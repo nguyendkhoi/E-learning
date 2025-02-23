@@ -1,0 +1,142 @@
+.select2-container--default .select2-selection--single {
+    height: 46px;
+    padding: 8px 10px;
+    font-size: 18px; 
+    line-height: 1.33;
+    border-radius: 6px;
+  }
+  
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 44px;
+}
+
+.select2-container--default .select2-results__option {
+  padding: 10px 16px;
+  font-size: 18px; 
+}
+
+#form_add_lecture {
+  display: none;
+}
+
+.btn a {
+  color: black;
+  text-decoration: none;
+}
+
+.formControl {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: 2px solid rgb(247, 247, 249);
+  border-radius: 10px;
+}
+
+#add_quiz_form {
+  display: none;
+}
+
+.answer-container.btn-outline-danger {
+  border-color: white;
+}
+
+.answer-container.btn-group-sm>.btn, .btn-sm {
+  --bs-btn-padding-y: 0;
+}
+
+#sidebar {
+  position: fixed;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+}
+
+/* Trạng thái collapsed */
+#sidebar.collapsed {
+  width: 30px !important;
+  min-width: 30px;
+  padding: 0;
+  border-right: none;
+  overflow: hidden;
+}
+
+#main-body.collapsed {
+  margin-left: 0;
+}
+
+/* Ẩn các item khi sidebar bị thu nhỏ */
+#sidebar.collapsed .nav-item,
+#sidebar.collapsed .dropdown {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#sidebar:not(.collapsed) .nav-item,
+#sidebar:not(.collapsed) .dropdown {
+  opacity: 1;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+.body.flex-grow-1 {
+  margin-left: 280px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+#sidebar.collapsed + .body.flex-grow-1 {
+  margin-left: 30px;
+}
+
+.quize {
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+a:hover .quize {
+  background-color: #e9ecef;
+  text-decoration: none;
+}
+
+a.quiz-link {
+  text-decoration: none;
+  color: black;
+}
+
+a.quiz-link:hover {
+  text-decoration: none;
+}
+
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.toggle-course {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1),
+              opacity 0.3s ease-in-out;
+}
+
+.toggle-course.show {
+  max-height: 2000px;
+  opacity: 1;
+  transition: max-height 1s ease-in-out,
+              opacity 0.3s ease-in-out;
+}
+
+.border-silence {
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.blue-border {
+  border-color: rgb(13, 106, 245);
+}

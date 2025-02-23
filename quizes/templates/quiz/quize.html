@@ -1,0 +1,23 @@
+{% extends "quiz/layout.html" %} 
+{% block body %}
+    <div class="container mt-4">
+        <h2 class="mb-1">{{ quiz.name }}</h2>
+        <p class="mb-3">Score to pass: {{ quiz.required_score_to_pass }}</p>
+        <div id="show-result"></div>
+        <form class="form-control px-4 py-2" id="quiz_form" method="POST" 
+        data-lecture-id="{{ lecture_id }}" data-quiz-id="{{ quiz_id }}">        
+        {% csrf_token %}
+            {% for question in questions %}
+                    <b class="mb-2 question">Question: {{ question.text }}</b>
+                    {% for answer in question.get_answer %}
+                    <div>
+                        <input type="checkbox" class="answer" id="{{ question.id }}-{{ answer.id }}" name="{{ question.text }}" value="{{ answer.text }}">
+                        <label for="{{ question.id }}-{{ answer.id }}">{{ answer.text }}</label>
+                    </div>
+                    {% endfor %}
+                <hr class="my-3">
+            {% endfor %}
+            <input type="submit" class="btn btn-primary mt-3" value="Answer">
+        </form>
+    </div>
+{%endblock %} 
