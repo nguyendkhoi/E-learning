@@ -115,4 +115,14 @@ The frontend of the application, where we have many templates, each of which dis
 
 ## How to run it
 
-
+    ```bash
+    git clone https://github.com/nguyendkhoi/E-learning.git
+    python -m venv env
+    source env/bin/activate   # On Linux/macOS
+    env\Scripts\activate  # On Windows
+    pip install -r requirements.txt
+    cd e_learning
+    python manage.py migrate
+    python manage.py runserver
+    ```
+    Open your web browser and go to the address shown in your terminal (usually `http://127.0.0.1:8000/`). You should see the homepage of your e-learning platform.
