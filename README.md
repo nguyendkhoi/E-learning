@@ -106,5 +106,13 @@ The frontend of the application, where we have many templates, each of which dis
 ### Project-Level Files (Outside of Apps)
 
 *   **`manage.py`**: Django management script.
+
 *   **`requirements.txt`**:  Lists Python package dependencies for the entire project.
+
+*   **`db.sqlite3`**: This file is the default SQLite database for your Django project. It stores all the application data, including user information, courses, lectures, quizzes, and results, if you are using SQLite as your database backend.
+
+*   **`README.md`**: This file, the one you are currently writing, serves as the project's documentation. It provides an overview of the project, instructions for setup and running, file descriptions, and other relevant information.
+
+## How to run it
+
 
