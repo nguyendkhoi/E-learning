@@ -119,7 +119,7 @@ def course_detail(request, course_id):
             "is_owner": course.owner == request.user,
         })
     else:
-        return render(request, "project/course_detail_student.html", {
+        return render(request, "project/course_detail.html", {
             "course": course,
             "is_owner": False,
         })
