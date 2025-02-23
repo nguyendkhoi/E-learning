@@ -119,7 +119,7 @@ To run this Django e-learning platform, please follow these steps:
 
 ```bash
 git clone [https://github.com/nguyendkhoi/E-learning.git](https://github.com/nguyendkhoi/E-learning.git)
-cd E-learning  # Navigate into the project directory (adjust if your folder name is different)
+cd e-learning  # Navigate into the project directory (adjust if your folder name is different)
 
 # Create and activate a virtual environment (recommended)
 python -m venv venv
